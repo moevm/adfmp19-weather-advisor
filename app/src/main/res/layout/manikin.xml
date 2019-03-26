@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:app="http://schemas.android.com/apk/res-auto"
+       xmlns:itemview="http://schemas.android.com/apk/res-auto"
+       android:orientation="vertical"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <ImageView
+                android:id="@+id/weather_man"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:src="@drawable/vd_weather_man"
+                android:contentDescription="@string/cd_image_of_person"/>
+
+
+        <info.moevm.se.weatheradvisor.ui.view.ClotheItem
+                android:id="@+id/head"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                itemview:border_radius="10"
+                itemview:border_width="1"
+                itemview:text_placement="end"
+                itemview:image_item="@drawable/vd_glasses"
+                itemview:item_text="@string/head_title"
+                app:layout_constraintTop_toTopOf="@id/weather_man"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+        />
+
+        <info.moevm.se.weatheradvisor.ui.view.ClotheItem
+                android:id="@+id/overbody"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                itemview:border_radius="10"
+                itemview:border_width="1"
+                itemview:text_placement="start"
+                itemview:image_item="@drawable/vd_glasses"
+                itemview:item_text="@string/jacket_title"
+                app:layout_constraintTop_toBottomOf="@id/head"
+                app:layout_constraintEnd_toStartOf="@id/body"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="@id/weather_man"/>
+
+        <info.moevm.se.weatheradvisor.ui.view.ClotheItem
+                android:id="@+id/body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                itemview:border_radius="10"
+                itemview:border_width="1"
+                itemview:text_placement="end"
+                itemview:image_item="@drawable/vd_glasses"
+                itemview:item_text="@string/body_title"
+                app:layout_constraintStart_toEndOf="@id/overbody"
+                app:layout_constraintTop_toBottomOf="@id/head"
+                app:layout_constraintEnd_toEndOf="@id/weather_man"/>
+
+        <info.moevm.se.weatheradvisor.ui.view.ClotheItem
+                android:id="@+id/legs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                itemview:border_radius="10"
+                itemview:border_width="1"
+                itemview:text_placement="end"
+                itemview:image_item="@drawable/vd_glasses"
+                itemview:item_text="@string/legs_title"
+                app:layout_constraintTop_toBottomOf="@id/body"
+                app:layout_constraintStart_toStartOf="@id/overbody"
+                app:layout_constraintEnd_toEndOf="@id/body"/>
+
+        <info.moevm.se.weatheradvisor.ui.view.ClotheItem
+                android:id="@+id/feet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                itemview:border_radius="10"
+                itemview:border_width="1"
+                itemview:text_placement="end"
+                itemview:image_item="@drawable/vd_glasses"
+                itemview:item_text="@string/feet_title"
+                app:layout_constraintTop_toBottomOf="@id/legs"
+                app:layout_constraintStart_toStartOf="@id/overbody"
+                app:layout_constraintEnd_toEndOf="@id/body"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</merge>

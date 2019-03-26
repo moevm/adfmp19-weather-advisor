@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">WeatherAdvisor</string>
+    <string name="wardrobe_title">wardrobe</string>
+    <string name="cd_navigation_option">navigation option</string>
+    <string name="look_for_today">Your look for today</string>
+    <string name="weather">Weather</string>
+    <string name="cd_image_of_person">image of person</string>
+    <string name="head_title">Head</string>
+    <string name="jacket_title">Jacket</string>
+    <string name="body_title">Body</string>
+    <string name="legs_title">Legs</string>
+    <string name="feet_title">Feet</string>
+    <string name="cd_weather_icon">an icon representing a weather</string>
+    <string name="cd_edit_pencil">image representing item editing</string>
+    <string name="select_your_location">Select your location</string>
+    <string name="no_items_yet">NO ITEMS YET</string>
+    <string name="save_button">Save</string>
+    <string name="cd_an_item">An item</string>
+    <string name="temperature">Temperature</string>
+    <string name="item_type">Item type</string>
+    <string name="item_color">Item color</string>
+    <string name="type_name_for_a_new_object">Type name for a new object</string>
+
+    <string-array name="item_types">
+        <item>All</item>
+        <item>Head</item>
+        <item>Jackets</item>
+        <item>Body</item>
+        <item>Legs</item>
+        <item>Feet</item>
+    </string-array>
+</resources>

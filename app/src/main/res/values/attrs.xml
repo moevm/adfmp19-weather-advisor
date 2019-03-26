@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ClotheItem">
+        <attr name="border_radius" format="integer"/>
+        <attr name="border_width" format="integer"/>
+        <attr name="border_color" format="color"/>
+
+        <attr name="text_placement" format="enum">
+            <enum name="start" value="0"/>
+            <enum name="top" value="1"/>
+            <enum name="end" value="2"/>
+            <enum name="bottom" value="3"/>
+            <enum name="nowhere" value="4"/>
+        </attr>
+        <attr name="item_text" format="string|integer"/>
+
+        <attr name="image_item" format="integer"/>
+
+        <attr name="active_color" format="color"/>
+    </declare-styleable>
+</resources>

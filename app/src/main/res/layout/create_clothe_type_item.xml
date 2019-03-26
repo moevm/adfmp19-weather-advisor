@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content">
+
+    <View
+            android:id="@+id/create_clothe_type_item_border"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/clothe_border"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+    />
+
+    <ImageView
+            android:id="@+id/create_clothe_type_item"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:contentDescription="@string/cd_an_item"
+            android:scaleType="center"
+            android:layout_gravity="center"
+    />
+
+</FrameLayout>
