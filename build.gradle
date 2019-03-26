@@ -5,7 +5,6 @@ buildscript {
     repositories {
         google()
         jcenter()
-        
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.3.2'
@@ -19,10 +18,84 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ext {
+    compileSdkVersion = 28
+    minSdkVersion = 21
+    targetSdkVersion = 28
+
+    versionCode = 1
+    versionName = "1.0"
+
+    buildToolsVersion = '28.0.3'
+
+    androidxAppcompVersion = '1.1.0-alpha03'
+    androidxCoreVersion = '1.1.0-alpha05'
+    androidxConstraintVersion = '1.1.3'
+    materialVersion = '1.1.0-alpha04'
+    junitVersion = '4.12'
+    androidxTestRunnerVersion = '1.1.2-alpha02'
+    androidxEspressoVersion = '3.2.0-alpha02'
+    retrofitVersions = '2.5.0'
+    okhttpVersion = '3.4.1'
+    daggerVersion = '2.14.1'
+    rxJavaVersion = '2.1.9'
+    rxKotlinVersion = '2.3.0'
+    rxAndroidVersion = '2.0.2'
+    roomVersion = '1.1.0'
+
+    deps = [
+            modules = [
+                    app   : project(":app"),
+                    data  : project(":data"),
+                    domain: project(":domain"),
+            ],
+
+            common = [
+                    kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+                    androidxCore      : "androidx.core:core-ktx:$androidxCoreVersion",
+                    androidxAppcomp   : "androidx.appcompat:appcompat:$androidxAppcompVersion",
+                    androidxRecycle   : "androidx.recyclerview:recyclerview:$androidxAppcompVersion",
+                    androidxConstraint: "androidx.constraintlayout:constraintlayout:$androidxConstraintVersion",
+                    androidMaterial   : "com.google.android.material:material:$materialVersion",
+            ],
+
+            testing = [
+                    junit             : "junit:junit:$junitVersion",
+                    androidxTestRunner: "androidx.test:runner:$androidxTestRunnerVersion",
+                    androidxEspresso  : "androidx.test.espresso:espresso-core:$androidxEspressoVersion",
+            ],
+
+            retrofit = [
+                    retrofitCore         : "com.squareup.retrofit2:retrofit:$retrofitVersions",
+                    retrofitRxAdapter: "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersions",
+                    retrofitMoshi    : "com.squareup.retrofit2:converter-moshi:$retrofitVersions",
+            ],
+
+            okhttp = [
+                    okhttpCore: "com.squareup.okhttp3:okhttp:$okhttpVersion",
+            ],
+
+            room = [
+                    roomCore                   : "android.arch.persistence.room:runtime:$roomVersion",
+                    roomAnnotationProcessor: "android.arch.persistence.room:compiler:$roomVersion"
+            ],
+
+            dagger = [
+                    daggerCore       : "com.google.dagger:dagger:$daggerVersion",
+                    kaptDaggerComiler: "com.google.dagger:dagger-compiler:$daggerVersion",
+            ],
+
+            rx = [
+                    rxJava   : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
+                    rkKotlin : "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion",
+                    rxAndroid: "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
+            ]
+    ]
 }
