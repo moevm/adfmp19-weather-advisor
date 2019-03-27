@@ -1,5 +1,3 @@
-def config = rootProject.extensions.getByName("ext")
-
 apply plugin: 'com.android.library'
 
 apply plugin: 'kotlin-android'
@@ -7,6 +5,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
+
+def config = rootProject.extensions.getByName("ext")
 
 android {
     compileSdkVersion config["compileSdkVersion"]
@@ -34,27 +34,27 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation deps.common.kotlin
-    implementation deps.common.androidxAppcomp
-    testImplementation deps.testing.junit
-    androidTestImplementation deps.testing.androidxTestRunner
-    androidTestImplementation deps.testing.androidxEspresso
+    implementation config.common.kotlin
+    implementation config.common.androidxAppcomp
+    testImplementation config.testing.junit
+    androidTestImplementation config.testing.androidxTestRunner
+    androidTestImplementation config.testing.androidxEspresso
 
-    implementation deps.dagger.daggerCore
-    kapt deps.dagger.kaptDaggerComiler
+    implementation config.dagger.daggerCore
+    kapt config.dagger.kaptDaggerComiler
 
-    implementation deps.rx.rxJava
-    implementation deps.rx.rkKotlin
-    implementation deps.rx.rxAndroid
+    implementation config.rx.rxJava
+    implementation config.rx.rkKotlin
+    implementation config.rx.rxAndroid
 
-    implementation deps.retrofit.retrofitCore
-    implementation deps.retrofit.retrofitRxAdapter
-    implementation deps.retrofit.retrofitMoshi
+    implementation config.retrofit.retrofitCore
+    implementation config.retrofit.retrofitRxAdapter
+    implementation config.retrofit.retrofitMoshi
 
-    implementation deps.okhttp.okhttpCore
+    implementation config.okhttp.okhttpCore
 
-    implementation deps.room.roomCore
-    annotationProcessor deps.room.roomAnnotationProcessor
+    implementation config.room.roomCore
+    annotationProcessor config.room.roomAnnotationProcessor
 
-    api config.deps.module.domain
+    api config.modules.domain
 }

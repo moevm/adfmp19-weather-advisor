@@ -50,52 +50,50 @@ ext {
     rxAndroidVersion = '2.0.2'
     roomVersion = '1.1.0'
 
-    deps = [
-            modules = [
-                    app   : project(":app"),
-                    data  : project(":data"),
-                    domain: project(":domain"),
-            ],
+    modules = [
+            app   : project(":app"),
+            data  : project(":data"),
+            domain: project(":domain"),
+    ]
 
-            common = [
-                    kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
-                    androidxCore      : "androidx.core:core-ktx:$androidxCoreVersion",
-                    androidxAppcomp   : "androidx.appcompat:appcompat:$androidxAppcompVersion",
-                    androidxRecycle   : "androidx.recyclerview:recyclerview:$androidxAppcompVersion",
-                    androidxConstraint: "androidx.constraintlayout:constraintlayout:$androidxConstraintVersion",
-                    androidMaterial   : "com.google.android.material:material:$materialVersion",
-            ],
+    common = [
+            kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version",
+            androidxCore      : "androidx.core:core-ktx:$androidxCoreVersion",
+            androidxAppcomp   : "androidx.appcompat:appcompat:$androidxAppcompVersion",
+            androidxRecycle   : "androidx.recyclerview:recyclerview:$androidxAppcompVersion",
+            androidxConstraint: "androidx.constraintlayout:constraintlayout:$androidxConstraintVersion",
+            androidMaterial   : "com.google.android.material:material:$materialVersion",
+    ]
 
-            testing = [
-                    junit             : "junit:junit:$junitVersion",
-                    androidxTestRunner: "androidx.test:runner:$androidxTestRunnerVersion",
-                    androidxEspresso  : "androidx.test.espresso:espresso-core:$androidxEspressoVersion",
-            ],
+    testing = [
+            junit             : "junit:junit:$junitVersion",
+            androidxTestRunner: "androidx.test:runner:$androidxTestRunnerVersion",
+            androidxEspresso  : "androidx.test.espresso:espresso-core:$androidxEspressoVersion",
+    ]
 
-            retrofit = [
-                    retrofitCore         : "com.squareup.retrofit2:retrofit:$retrofitVersions",
-                    retrofitRxAdapter: "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersions",
-                    retrofitMoshi    : "com.squareup.retrofit2:converter-moshi:$retrofitVersions",
-            ],
+    retrofit = [
+            retrofitCore     : "com.squareup.retrofit2:retrofit:$retrofitVersions",
+            retrofitRxAdapter: "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersions",
+            retrofitMoshi    : "com.squareup.retrofit2:converter-moshi:$retrofitVersions",
+    ]
 
-            okhttp = [
-                    okhttpCore: "com.squareup.okhttp3:okhttp:$okhttpVersion",
-            ],
+    okhttp = [
+            okhttpCore: "com.squareup.okhttp3:okhttp:$okhttpVersion",
+    ]
 
-            room = [
-                    roomCore                   : "android.arch.persistence.room:runtime:$roomVersion",
-                    roomAnnotationProcessor: "android.arch.persistence.room:compiler:$roomVersion"
-            ],
+    room = [
+            roomCore               : "android.arch.persistence.room:runtime:$roomVersion",
+            roomAnnotationProcessor: "android.arch.persistence.room:compiler:$roomVersion"
+    ]
 
-            dagger = [
-                    daggerCore       : "com.google.dagger:dagger:$daggerVersion",
-                    kaptDaggerComiler: "com.google.dagger:dagger-compiler:$daggerVersion",
-            ],
+    dagger = [
+            daggerCore       : "com.google.dagger:dagger:$daggerVersion",
+            kaptDaggerComiler: "com.google.dagger:dagger-compiler:$daggerVersion",
+    ]
 
-            rx = [
-                    rxJava   : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
-                    rkKotlin : "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion",
-                    rxAndroid: "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
-            ]
+    rx = [
+            rxJava   : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
+            rkKotlin : "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion",
+            rxAndroid: "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
     ]
 }

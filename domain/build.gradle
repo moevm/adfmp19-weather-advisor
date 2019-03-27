@@ -1,13 +1,15 @@
-def config = rootProject.extensions.getByName("ext")
-
 apply plugin: 'java-library'
+
+apply plugin: 'kotlin'
+
+def config = rootProject.extensions.getByName("ext")
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation deps.common.kotlin
+    implementation config.common.kotlin
 
-    implementation deps.rx.rxJava
-    implementation deps.rx.rkKotlin
+    implementation config.rx.rxJava
+    implementation config.rx.rkKotlin
 }
 
 sourceCompatibility = "8"
