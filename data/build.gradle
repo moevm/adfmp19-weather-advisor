@@ -56,5 +56,8 @@ dependencies {
     implementation config.room.roomCore
     annotationProcessor config.room.roomAnnotationProcessor
 
+    implementation config.gson.gsonCore
+    implementation config.gson.gsonConverter
+
     api config.modules.domain
 }

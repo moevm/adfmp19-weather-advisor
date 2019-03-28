@@ -17,7 +17,7 @@ class LocationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_location)
-        toolbar_title.text = "Location"
+        toolbar_title.text = "Country"
         toolbar_nav_button.apply {
             setImageResource(R.drawable.vd_navigate_back)
             setOnClickListener {

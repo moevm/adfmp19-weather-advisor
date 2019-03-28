@@ -49,6 +49,8 @@ ext {
     rxKotlinVersion = '2.3.0'
     rxAndroidVersion = '2.0.2'
     roomVersion = '1.1.0'
+    gsonVersion = '2.8.5'
+    gsonConverterVersion = '2.5.0'
 
     modules = [
             app   : project(":app"),
@@ -95,5 +97,10 @@ ext {
             rxJava   : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
             rkKotlin : "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion",
             rxAndroid: "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
+    ]
+
+    gson = [
+            gsonCore: "com.google.code.gson:gson:$gsonVersion",
+            gsonConverter : "com.squareup.retrofit2:converter-gson:$gsonConverterVersion"
     ]
 }

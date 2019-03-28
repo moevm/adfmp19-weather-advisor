@@ -47,5 +47,17 @@ dependencies {
     implementation config.rx.rkKotlin
     implementation config.rx.rxAndroid
 
+    implementation config.retrofit.retrofitCore
+    implementation config.retrofit.retrofitRxAdapter
+    implementation config.retrofit.retrofitMoshi
+
+    implementation config.okhttp.okhttpCore
+
+    implementation config.room.roomCore
+    annotationProcessor config.room.roomAnnotationProcessor
+
+    implementation config.gson.gsonCore
+    implementation config.gson.gsonConverter
+
     api config.modules.data
 }
