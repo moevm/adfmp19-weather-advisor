@@ -1,16 +1,18 @@
 package info.moevm.se.domain.entities
 
-enum class ItemColors {
-    COLOR1,
-    COLOR2,
-    COLOR3,
-    COLOR4,
-    COLOR5,
-    COLOR6,
-    COLOR7,
-    COLOR8,
-    COLOR9,
-    COLOR10,
-    COLOR11,
-    COLOR12,
+import java.lang.IllegalArgumentException
+
+enum class ItemColors(override val code: Int) : IntProperty {
+    COLOR1(0),
+    COLOR2(1),
+    COLOR3(2),
+    COLOR4(3),
+    COLOR5(4),
+    COLOR6(5),
+    COLOR7(6),
+    COLOR8(7),
+    COLOR9(8),
+    COLOR10(9),
+    COLOR11(10),
+    COLOR12(11);
 }

@@ -3,12 +3,12 @@
               android:orientation="horizontal"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:paddingBottom="16dp">
+              android:paddingBottom="8dp">
 
     <CheckBox
             android:id="@+id/wardrobe_item_checkbox"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:button="@drawable/wardrobe_check_button"
             android:elevation="16dp"
     />
@@ -35,6 +35,7 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:padding="4dp"
+            android:layout_gravity="center_vertical"
             android:src="@drawable/vd_edit_pencil"
             android:contentDescription="@string/cd_edit_pencil"/>
 

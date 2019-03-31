@@ -1,6 +1,7 @@
 package info.moevm.se.weatheradvisor
 
 import android.app.Application
+import info.moevm.se.data.local.db.DatabaseModule
 import info.moevm.se.weatheradvisor.di.AppComponent
 import info.moevm.se.weatheradvisor.di.AppModule
 import info.moevm.se.weatheradvisor.di.DaggerAppComponent
@@ -15,6 +16,7 @@ class App : Application() {
         appComponent = DaggerAppComponent.builder()
             .application(AppModule(this))
             .network(NetModule("http://dataservice.accuweather.com/"))
+            .database(DatabaseModule)
             .build()
     }
 }

@@ -4,10 +4,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import info.moevm.se.domain.entities.ItemColors
 import info.moevm.se.ext.colorList
 import info.moevm.se.ext.inflate
 import info.moevm.se.weatheradvisor.R
 import info.moevm.se.weatheradvisor.ui.util.CircleOutline
+import java.lang.IllegalArgumentException
 
 class ColorAdapter : RecyclerView.Adapter<ColorAdapter.ColorHolder>() {
 
@@ -25,6 +27,24 @@ class ColorAdapter : RecyclerView.Adapter<ColorAdapter.ColorHolder>() {
         R.color.color_item11,
         R.color.color_item12
     )
+
+    private var selectedColor = 0
+
+    fun getSelected(): ItemColors = when (selectedColor) {
+        0 -> ItemColors.COLOR1
+        1 -> ItemColors.COLOR2
+        2 -> ItemColors.COLOR3
+        3 -> ItemColors.COLOR4
+        4 -> ItemColors.COLOR5
+        5 -> ItemColors.COLOR6
+        6 -> ItemColors.COLOR7
+        7 -> ItemColors.COLOR8
+        8 -> ItemColors.COLOR9
+        9 -> ItemColors.COLOR10
+        10 -> ItemColors.COLOR11
+        11 -> ItemColors.COLOR12
+        else -> throw IllegalArgumentException("Unknown color")
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ColorHolder(parent.context.inflate(R.layout.create_clothe_color_item, parent))

@@ -48,7 +48,7 @@ ext {
     rxJavaVersion = '2.1.9'
     rxKotlinVersion = '2.3.0'
     rxAndroidVersion = '2.0.2'
-    roomVersion = '1.1.0'
+    roomVersion = '1.1.1'
     gsonVersion = '2.8.5'
     gsonConverterVersion = '2.5.0'
 
@@ -85,6 +85,7 @@ ext {
 
     room = [
             roomCore               : "android.arch.persistence.room:runtime:$roomVersion",
+            roomRxAdapter          : "android.arch.persistence.room:rxjava2:$roomVersion",
             roomAnnotationProcessor: "android.arch.persistence.room:compiler:$roomVersion"
     ]
 
@@ -95,12 +96,12 @@ ext {
 
     rx = [
             rxJava   : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
-            rkKotlin : "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion",
+            rxKotlin : "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion",
             rxAndroid: "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
     ]
 
     gson = [
-            gsonCore: "com.google.code.gson:gson:$gsonVersion",
-            gsonConverter : "com.squareup.retrofit2:converter-gson:$gsonConverterVersion"
+            gsonCore     : "com.google.code.gson:gson:$gsonVersion",
+            gsonConverter: "com.squareup.retrofit2:converter-gson:$gsonConverterVersion"
     ]
 }

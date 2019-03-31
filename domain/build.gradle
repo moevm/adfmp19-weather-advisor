@@ -9,7 +9,7 @@ dependencies {
     implementation config.common.kotlin
 
     implementation config.rx.rxJava
-    implementation config.rx.rkKotlin
+    implementation config.rx.rxKotlin
 }
 
 sourceCompatibility = "8"

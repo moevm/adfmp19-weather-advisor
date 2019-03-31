@@ -44,7 +44,7 @@ dependencies {
     kapt config.dagger.kaptDaggerComiler
 
     implementation config.rx.rxJava
-    implementation config.rx.rkKotlin
+    implementation config.rx.rxKotlin
     implementation config.rx.rxAndroid
 
     implementation config.retrofit.retrofitCore
@@ -54,7 +54,9 @@ dependencies {
     implementation config.okhttp.okhttpCore
 
     implementation config.room.roomCore
-    annotationProcessor config.room.roomAnnotationProcessor
+    implementation config.room.roomRxAdapter
+    kapt config.room.roomAnnotationProcessor
+//    annotationProcessor config.room.roomAnnotationProcessor
 
     implementation config.gson.gsonCore
     implementation config.gson.gsonConverter
