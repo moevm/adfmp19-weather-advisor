@@ -32,6 +32,7 @@
             android:layout_weight="1"/>
 
     <ImageView
+            android:id="@+id/wardrobe_item_edit"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:padding="4dp"

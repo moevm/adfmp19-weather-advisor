@@ -59,8 +59,10 @@ class ColorAdapter : RecyclerView.Adapter<ColorAdapter.ColorHolder>() {
                 backgroundTintList = view.context.colorList(colors[position])
                 outlineProvider = CircleOutline
                 setOnClickListener {
-                    it.isSelected = true
+                    selectedColor = position
+                    notifyDataSetChanged()
                 }
+                view.isSelected = position == selectedColor
             }
         }
     }

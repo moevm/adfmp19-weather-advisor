@@ -41,7 +41,5 @@ class WardrobeActivity : AppCompatActivity() {
             adapter = this@WardrobeActivity.adapter
             layoutManager = LinearLayoutManager(this@WardrobeActivity)
         }
-
-
     }
 }

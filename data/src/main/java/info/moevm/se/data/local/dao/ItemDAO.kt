@@ -26,4 +26,6 @@ interface ItemDAO {
     @Delete
     fun delete(value: ItemDB)
 
+    fun itemById(id: String): Maybe<ItemDB>
+
 }

@@ -108,7 +108,8 @@ class ClotheItem @JvmOverloads constructor(
         }
     }
 
-    fun setItemImage(image: Drawable) {
+    fun setItemImage(image: Drawable?) {
+        if (image == null) return
         itemImage = image
         invalidate()
     }
@@ -116,12 +117,6 @@ class ClotheItem @JvmOverloads constructor(
     fun setItemTitle(title: String) {
         itemText = title
         invalidate()
-    }
-
-    fun setOnClickListener(listener: OnClickListener) {
-        setOnClickListener {
-            listener.onClick()
-        }
     }
 
     internal fun getHalfDrawableAndTextSize() =
@@ -188,11 +183,5 @@ class ClotheItem @JvmOverloads constructor(
 
     enum class TextPosition {
         START, TOP, END, BOTTOM
-    }
-
-    interface OnClickListener {
-        fun onClick() {
-
-        }
     }
 }

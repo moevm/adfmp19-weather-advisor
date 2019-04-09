@@ -12,13 +12,13 @@ import info.moevm.se.weatheradvisor.R
 import info.moevm.se.weatheradvisor.ui.adapter.ItemAdapter.ItemHolder
 import io.reactivex.Maybe
 
-class ItemAdapter(var itemsStream: Maybe<List<ItemDB>>) : RecyclerView.Adapter<ItemHolder>() {
+class ItemAdapter(var itemsStream: Maybe<List<Item>>) : RecyclerView.Adapter<ItemHolder>() {
 
     private var items = ArrayList<Item>()
 
     init {
         val inition = itemsStream.subscribe {
-            it.asSequence().map { dbEntity -> dbEntity.map() }.toCollection(items)
+            it.asSequence().toCollection(items)
             notifyDataSetChanged()
         }
     }
