@@ -8,10 +8,11 @@ import info.moevm.se.domain.entities.ItemColors
 import info.moevm.se.ext.colorList
 import info.moevm.se.ext.inflate
 import info.moevm.se.weatheradvisor.R
+import info.moevm.se.weatheradvisor.clotheeditorscreen.ClotheEditorActivity
 import info.moevm.se.weatheradvisor.ui.util.CircleOutline
 import java.lang.IllegalArgumentException
 
-class ColorAdapter : RecyclerView.Adapter<ColorAdapter.ColorHolder>() {
+class ColorAdapter(val activity: ClotheEditorActivity) : RecyclerView.Adapter<ColorAdapter.ColorHolder>() {
 
     private val colors = listOf(
         R.color.color_item1,
@@ -46,6 +47,8 @@ class ColorAdapter : RecyclerView.Adapter<ColorAdapter.ColorHolder>() {
         else -> throw IllegalArgumentException("Unknown color")
     }
 
+    fun colorChanged(newColor: Int) = activity.onColorChanged(newColor)
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ColorHolder(parent.context.inflate(R.layout.create_clothe_color_item, parent))
 
@@ -59,8 +62,11 @@ class ColorAdapter : RecyclerView.Adapter<ColorAdapter.ColorHolder>() {
                 backgroundTintList = view.context.colorList(colors[position])
                 outlineProvider = CircleOutline
                 setOnClickListener {
-                    it.isSelected = true
+                    selectedColor = position
+                    colorChanged(colors[position])
+                    notifyDataSetChanged()
                 }
+                view.isSelected = position == selectedColor
             }
         }
     }

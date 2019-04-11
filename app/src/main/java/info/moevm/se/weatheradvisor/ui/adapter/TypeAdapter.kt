@@ -5,94 +5,110 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import info.moevm.se.domain.entities.ItemTypes
+import info.moevm.se.ext.colorList
 import info.moevm.se.ext.drawable
 import info.moevm.se.ext.inflate
 import info.moevm.se.weatheradvisor.R
 import info.moevm.se.weatheradvisor.ui.adapter.FilterType.ALL
-import info.moevm.se.weatheradvisor.ui.adapter.FilterType.BODY
-import info.moevm.se.weatheradvisor.ui.adapter.FilterType.FEET
-import info.moevm.se.weatheradvisor.ui.adapter.FilterType.HEAD
-import info.moevm.se.weatheradvisor.ui.adapter.FilterType.JACKETS
-import info.moevm.se.weatheradvisor.ui.adapter.FilterType.LEGS
 
 class TypeAdapter : RecyclerView.Adapter<TypeAdapter.TypeHolder>() {
 
-    private val clothes = mapOf(
-        "head" to listOf(
-            R.drawable.vd_glasses
-        ),
-        "overbody" to listOf(
-
-        ),
-        "body" to listOf(
-            R.drawable.vd_shirt1
-        ),
-        "legs" to listOf(
-            R.drawable.vd_shorts1
-        ),
-        "feet" to listOf(
-            R.drawable.vd_shoe,
-            R.drawable.vd_shoe1,
-            R.drawable.vd_shoe2,
-            R.drawable.vd_shoe3,
-            R.drawable.vd_shoe4,
-            R.drawable.vd_shoe5,
-            R.drawable.vd_shoe6,
-            R.drawable.vd_shoe7
-        )
+    private val clothes = listOf(
+        TypeItem("head", R.drawable.vd_glasses),
+        TypeItem("body", R.drawable.vd_shirt1),
+        TypeItem("legs", R.drawable.vd_shorts1),
+        TypeItem("feet", R.drawable.vd_shoe),
+        TypeItem("feet", R.drawable.vd_shoe1),
+        TypeItem("feet", R.drawable.vd_shoe2),
+        TypeItem("feet", R.drawable.vd_shoe3),
+        TypeItem("feet", R.drawable.vd_shoe4),
+        TypeItem("feet", R.drawable.vd_shoe5),
+        TypeItem("feet", R.drawable.vd_shoe6),
+        TypeItem("feet", R.drawable.vd_shoe7)
     )
 
-    private var filter = "all"
+    private var currentColor = R.color.color_item1
 
-    private val allClothesNoTypes = clothes.asSequence().flatMap { it.value.asSequence() }.toList()
+    private var clothesToShow = clothes
 
-    private var selectedType = 0
+    private var filter = ALL
 
-    fun getSelected() = when (selectedType) {
-        0 -> ItemTypes.HEAD
-        1 -> ItemTypes.OVERBODY
-        2 -> ItemTypes.BODY
-        3 -> ItemTypes.LEGS
-        4 -> ItemTypes.FEET
+    private lateinit var selectedItem: TypeItem
+
+    init {
+        if (clothesToShow.isNotEmpty()) {
+            selectedItem = clothesToShow[0]
+        }
+    }
+
+    fun getSelected() = when (selectedItem.type) {
+        "head" -> ItemTypes.HEAD
+        "overbody" -> ItemTypes.OVERBODY
+        "body" -> ItemTypes.BODY
+        "legs" -> ItemTypes.LEGS
+        "feet" -> ItemTypes.FEET
         else -> throw IllegalArgumentException("Unknown type")
+    }
+
+    fun getSrc() = selectedItem.src
+
+    fun filter(type: FilterType) {
+        filter = type
+        clothesToShow = if (filter == ALL) clothes else clothes.filter { it.type == filter.value }
+        if (clothesToShow.isNotEmpty()) {
+            selectedItem = clothesToShow[0]
+        }
+        clothesToShow.forEach {
+            it.selected = false
+        }
+        selectedItem.selected = true
+        notifyDataSetChanged()
+    }
+
+    fun itemColorChanged(color: Int) {
+        currentColor = color
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         TypeHolder(parent.context.inflate(R.layout.create_clothe_type_item, parent))
 
-    override fun getItemCount() = if (filter == "all") {
-        clothes.asSequence().flatMap { it.value.asSequence() }.count()
-    } else {
-        clothes.getValue(filter).size
-    }
+    override fun getItemCount() = clothesToShow.size
 
     override fun onBindViewHolder(holder: TypeHolder, position: Int) = holder.bind(position)
-
-    fun filter(type: FilterType) {
-        filter = when (type) {
-            ALL -> "all"
-            HEAD -> "head"
-            JACKETS -> "overbody"
-            BODY -> "body"
-            LEGS -> "legs"
-            FEET -> "feet"
-        }
-        notifyDataSetChanged()
-    }
 
     inner class TypeHolder(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind(position: Int) {
             view.findViewById<ImageView>(R.id.create_clothe_type_item).apply {
-                if (filter == "all") {
-                    setImageDrawable(view.context.drawable(allClothesNoTypes[position]))
-                } else {
-                    setImageDrawable(view.context.drawable(clothes.getValue(filter)[position]))
-                }
+                setImageDrawable(view.context.drawable(clothesToShow[position].src))
+                imageTintList = context.colorList(currentColor)
             }
+            view.setOnClickListener {
+                clothesToShow.forEach {
+                    it.selected = false
+                }
+                clothesToShow[position].let {
+                    it.selected = true
+                    selectedItem = it
+                }
+                notifyDataSetChanged()
+            }
+            view.isSelected = clothesToShow[position].selected
         }
     }
 }
 
-enum class FilterType {
-    ALL, HEAD, JACKETS, BODY, LEGS, FEET
+enum class FilterType(val value: String) {
+    ALL("all"),
+    HEAD("head"),
+    OVERBODY("overbody"),
+    BODY("body"),
+    LEGS("legs"),
+    FEET("feet")
 }
+
+data class TypeItem(
+    val type: String,
+    val src: Int,
+    var selected: Boolean = false
+)

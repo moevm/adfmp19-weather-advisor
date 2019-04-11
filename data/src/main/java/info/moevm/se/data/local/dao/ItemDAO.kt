@@ -3,11 +3,9 @@ package info.moevm.se.data.local.dao
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.TypeConverters
 import androidx.room.Update
-import info.moevm.se.data.local.converters.ColorConverter
-import info.moevm.se.data.local.converters.TypeConverter
 import info.moevm.se.data.local.entities.ItemDB
 import io.reactivex.Maybe
 
@@ -17,7 +15,7 @@ interface ItemDAO {
     @Query("SELECT * FROM item")
     fun all(): Maybe<List<ItemDB>>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(value: ItemDB)
 
     @Update
@@ -25,5 +23,8 @@ interface ItemDAO {
 
     @Delete
     fun delete(value: ItemDB)
+
+    @Query("SELECT * FROM item WHERE id = :id")
+    fun itemById(id: String): Maybe<ItemDB>
 
 }

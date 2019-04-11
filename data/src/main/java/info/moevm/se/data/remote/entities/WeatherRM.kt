@@ -2,8 +2,9 @@ package info.moevm.se.data.remote.entities
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import info.moevm.se.domain.entities.Weather
 
-data class Weather(
+data class WeatherRM(
     @SerializedName("WeatherText")
     @Expose
     val state: String,
@@ -65,7 +66,7 @@ data class Speed(
     val metric: Metric
 )
 
-fun Weather.map() = info.moevm.se.domain.entities.Weather(
+fun WeatherRM.map() = Weather(
     name = this.state,
     temp = this.temp.metric.value,
     wind = this.wind.speed.metric.value,

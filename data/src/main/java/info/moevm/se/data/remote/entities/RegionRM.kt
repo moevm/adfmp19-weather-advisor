@@ -1,6 +1,6 @@
 package info.moevm.se.data.remote.entities
 
-enum class Region(region: String) {
+enum class RegionRM(val region: String) {
     AFR("AFR"),
     ANT("ANT"),
     ARC("ARC"),

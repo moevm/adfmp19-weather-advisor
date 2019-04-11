@@ -3,8 +3,8 @@ package info.moevm.se.data.remote.entities
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class Location(
-    @SerializedName("Key")
+data class CountryRM(
+    @SerializedName("ID")
     @Expose
-    val code: Int
+    val id: String
 )

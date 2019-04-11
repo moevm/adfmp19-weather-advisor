@@ -16,4 +16,8 @@ object DatabaseModule {
     @Provides
     @Singleton
     fun provideItemDAO(database: WeatherAdviserDB) = database.itemDAO()
+
+    @Provides
+    @Singleton
+    fun provideLovationDAO(database: WeatherAdviserDB) = database.locationDAO()
 }

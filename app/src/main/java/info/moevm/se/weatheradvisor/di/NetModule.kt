@@ -40,9 +40,4 @@ class NetModule(var baseUrl: String) {
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .client(client)
         .build()
-
-    @Provides
-    @Singleton
-    fun provideAccuWeatherRepository(retrofit: Retrofit) = AccuWeatherRepository(retrofit)
-
 }

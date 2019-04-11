@@ -121,6 +121,60 @@
                     android:textSize="16sp"
                     android:text="@string/temperature"/>
 
+            <TextView
+                    android:id="@+id/temp_from_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/from"
+                    app:layout_constraintTop_toBottomOf="@id/create_clothe_temp_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="32dp"
+                    android:textColor="#333333"
+                    android:textSize="16sp"
+                    android:layout_marginTop="8dp"
+            />
+
+            <EditText
+                    android:id="@+id/temp_from_edit"
+                    android:layout_width="64dp"
+                    android:layout_height="32dp"
+                    android:inputType="numberSigned"
+                    app:layout_constraintStart_toEndOf="@id/temp_from_title"
+                    app:layout_constraintTop_toTopOf="@id/temp_from_title"
+                    app:layout_constraintBottom_toBottomOf="@id/temp_from_title"
+                    android:layout_marginStart="16dp"
+                    android:background="@drawable/shape_white_10round"
+                    android:elevation="8dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+            />
+
+            <TextView
+                    android:id="@+id/temp_before_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/to"
+                    app:layout_constraintStart_toEndOf="@id/temp_from_edit"
+                    app:layout_constraintTop_toTopOf="@id/temp_from_title"
+                    app:layout_constraintBottom_toBottomOf="@id/temp_from_title"
+                    android:layout_marginStart="32dp"
+            />
+
+            <EditText
+                    android:id="@+id/temp_before_edit"
+                    android:layout_width="64dp"
+                    android:layout_height="32dp"
+                    android:inputType="numberSigned"
+                    app:layout_constraintStart_toEndOf="@id/temp_before_title"
+                    app:layout_constraintTop_toTopOf="@id/temp_from_title"
+                    app:layout_constraintBottom_toBottomOf="@id/temp_from_title"
+                    android:layout_marginStart="16dp"
+                    android:background="@drawable/shape_white_10round"
+                    android:elevation="8dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+            />
+
             <Button
                     android:id="@+id/create_clothe_button"
                     android:layout_width="120dp"

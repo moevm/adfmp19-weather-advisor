@@ -7,12 +7,15 @@ import io.reactivex.Maybe
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Retrofit
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class AccuWeatherRepository(
+@Singleton
+class AccuWeatherRepository @Inject constructor(
     val retrofit: Retrofit
 ) {
-    fun loadWeatherForCity(): Maybe<Weather> = retrofit.create(RestAPI::class.java)
-        .getWeather("295212")
+    fun loadWeatherForCity(code: String): Maybe<Weather> = retrofit.create(RestAPI::class.java)
+        .getWeather(code)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .map { it[0].map() }

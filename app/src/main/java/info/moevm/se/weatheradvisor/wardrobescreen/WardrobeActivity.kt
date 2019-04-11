@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 class WardrobeActivity : AppCompatActivity() {
 
-    private val adapter by lazy { ItemAdapter(repository.loadAll()) }
+    private val adapter by lazy { ItemAdapter(this, repository.loadAll()) }
 
     @Inject
     lateinit var repository: ItemRepository
@@ -41,7 +41,5 @@ class WardrobeActivity : AppCompatActivity() {
             adapter = this@WardrobeActivity.adapter
             layoutManager = LinearLayoutManager(this@WardrobeActivity)
         }
-
-
     }
 }

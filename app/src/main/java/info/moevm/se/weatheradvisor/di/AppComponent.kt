@@ -4,6 +4,7 @@ import dagger.Component
 import info.moevm.se.data.local.db.DatabaseModule
 import info.moevm.se.data.local.db.DatabaseModule_ProvideDatabaseFactory
 import info.moevm.se.weatheradvisor.clotheeditorscreen.ClotheEditorActivity
+import info.moevm.se.weatheradvisor.locationscreen.LocationActivity
 import info.moevm.se.weatheradvisor.mainscreen.MainScreenActivity
 import info.moevm.se.weatheradvisor.wardrobescreen.WardrobeActivity
 import javax.inject.Singleton
@@ -23,6 +24,8 @@ interface AppComponent {
     fun inject(activity: ClotheEditorActivity)
 
     fun inject(activity: WardrobeActivity)
+
+    fun inject(activity: LocationActivity)
 
     @Component.Builder
     interface Builder {
