@@ -14,4 +14,6 @@ fun Context.inflate(@LayoutRes layout: Int, viewGroup: ViewGroup, attachedToPare
 
 fun Context.drawable(@DrawableRes id: Int) = ContextCompat.getDrawable(this, id)
 
+fun Context.color(@ColorRes id: Int) = ContextCompat.getColor(this, id)
+
 fun Context.colorList(@ColorRes id: Int) = ContextCompat.getColorStateList(this, id)

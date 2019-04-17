@@ -7,6 +7,6 @@ data class Item (
     val srcId: Int,
     val tempFrom: Int,
     val tempTo: Int,
-    var selected: Boolean = false
+    var selected: Boolean = true
 )
 

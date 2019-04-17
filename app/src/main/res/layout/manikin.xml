@@ -30,8 +30,6 @@
                 itemview:border_radius="10"
                 itemview:border_width="1"
                 itemview:text_placement="end"
-                itemview:image_item="@drawable/vd_glasses"
-                itemview:item_text="@string/head_title"
                 app:layout_constraintTop_toTopOf="@id/weather_man"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -44,8 +42,6 @@
                 itemview:border_radius="10"
                 itemview:border_width="1"
                 itemview:text_placement="start"
-                itemview:image_item="@drawable/vd_glasses"
-                itemview:item_text="@string/jacket_title"
                 app:layout_constraintTop_toBottomOf="@id/head"
                 app:layout_constraintEnd_toStartOf="@id/body"
                 app:layout_constraintHorizontal_chainStyle="packed"
@@ -58,8 +54,6 @@
                 itemview:border_radius="10"
                 itemview:border_width="1"
                 itemview:text_placement="end"
-                itemview:image_item="@drawable/vd_glasses"
-                itemview:item_text="@string/body_title"
                 app:layout_constraintStart_toEndOf="@id/overbody"
                 app:layout_constraintTop_toBottomOf="@id/head"
                 app:layout_constraintEnd_toEndOf="@id/weather_man"/>
@@ -71,8 +65,6 @@
                 itemview:border_radius="10"
                 itemview:border_width="1"
                 itemview:text_placement="end"
-                itemview:image_item="@drawable/vd_glasses"
-                itemview:item_text="@string/legs_title"
                 app:layout_constraintTop_toBottomOf="@id/body"
                 app:layout_constraintStart_toStartOf="@id/overbody"
                 app:layout_constraintEnd_toEndOf="@id/body"/>
@@ -84,10 +76,32 @@
                 itemview:border_radius="10"
                 itemview:border_width="1"
                 itemview:text_placement="end"
-                itemview:image_item="@drawable/vd_glasses"
-                itemview:item_text="@string/feet_title"
                 app:layout_constraintTop_toBottomOf="@id/legs"
                 app:layout_constraintStart_toStartOf="@id/overbody"
                 app:layout_constraintEnd_toEndOf="@id/body"/>
+
+        <ImageView
+                android:id="@+id/prev_outfit"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:padding="8dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="32dp"
+                android:src="@drawable/vd_prev_outfit"
+        />
+
+        <ImageView
+                android:id="@+id/next_outfit"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:padding="8dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="32dp"
+                android:src="@drawable/vd_next_outfit"
+        />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </merge>

@@ -5,7 +5,6 @@ import android.graphics.Canvas
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.VectorDrawable
-import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 
 fun Drawable.bitmap(): Bitmap {

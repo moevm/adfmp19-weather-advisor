@@ -15,7 +15,8 @@ data class ItemDB(
     var colors: Int,
     var srcId: Int,
     val fromTemp: Int,
-    val toTemp: Int
+    val toTemp: Int,
+    val selected: Boolean
 )
 
 
@@ -25,7 +26,8 @@ fun ItemDB.map() = Item(
     colors = ColorConverter.to(this.colors),
     srcId = this.srcId,
     tempFrom = this.fromTemp,
-    tempTo = this.toTemp
+    tempTo = this.toTemp,
+    selected = this.selected
 )
 
 fun Item.map() = ItemDB(
@@ -35,5 +37,6 @@ fun Item.map() = ItemDB(
     colors = ColorConverter.from(this.colors),
     srcId = this.srcId,
     fromTemp = this.tempFrom,
-    toTemp = this.tempTo
+    toTemp = this.tempTo,
+    selected = this.selected
 )

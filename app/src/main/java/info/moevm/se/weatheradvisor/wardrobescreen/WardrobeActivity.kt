@@ -5,12 +5,19 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import info.moevm.se.data.repositories.ItemRepository
+import info.moevm.se.domain.entities.Item
+import info.moevm.se.domain.entities.ItemTypes
 import info.moevm.se.weatheradvisor.App
 import info.moevm.se.weatheradvisor.R
 import info.moevm.se.weatheradvisor.clotheeditorscreen.ClotheEditorActivity
+import info.moevm.se.weatheradvisor.mainscreen.MainScreenActivity.Companion.WARDROBE_FILTER_EXTRA
+import info.moevm.se.weatheradvisor.mainscreen.MainScreenActivity.Companion.WARDROBE_TEMP_EXTRA
 import info.moevm.se.weatheradvisor.ui.adapter.ItemAdapter
-import kotlinx.android.synthetic.main.activity_wardrobe.*
-import kotlinx.android.synthetic.main.toolbar.*
+import kotlinx.android.synthetic.main.activity_wardrobe.wardrobe_fab
+import kotlinx.android.synthetic.main.activity_wardrobe.wardrobe_list
+import kotlinx.android.synthetic.main.toolbar.toolbar_nav_button
+import kotlinx.android.synthetic.main.toolbar.toolbar_title
+import kotlinx.android.synthetic.main.toolbar.toolbar_view
 import javax.inject.Inject
 
 class WardrobeActivity : AppCompatActivity() {
@@ -19,6 +26,9 @@ class WardrobeActivity : AppCompatActivity() {
 
     @Inject
     lateinit var repository: ItemRepository
+
+    private var filterByType: ItemTypes? = null
+    private var filterByTemp: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,5 +51,27 @@ class WardrobeActivity : AppCompatActivity() {
             adapter = this@WardrobeActivity.adapter
             layoutManager = LinearLayoutManager(this@WardrobeActivity)
         }
+
+        intent?.let {
+            filterByType = if (it.hasExtra(WARDROBE_FILTER_EXTRA)) {
+                it.getSerializableExtra(WARDROBE_FILTER_EXTRA) as ItemTypes
+            } else {
+                null
+            }
+
+            filterByTemp = if (it.hasExtra(WARDROBE_TEMP_EXTRA)) {
+                it.getIntExtra(WARDROBE_TEMP_EXTRA, 0)
+            } else {
+                null
+            }
+        }
+
+        adapter.setTypeFilter(filterByType)
+        adapter.setTempFilter(filterByTemp)
+    }
+
+    fun updateItem(item: Item, checked: Boolean) {
+        item.selected = checked
+        repository.update(item)
     }
 }

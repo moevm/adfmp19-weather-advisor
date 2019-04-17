@@ -5,11 +5,14 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Paint.ANTI_ALIAS_FLAG
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.graphics.RectF
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.View
 import info.moevm.se.ext.bitmap
+import info.moevm.se.ext.color
 import info.moevm.se.ext.dpToPx
 import info.moevm.se.weatheradvisor.R
 
@@ -104,13 +107,18 @@ class ClotheItem @JvmOverloads constructor(
             drawRoundRect(borderRect, borderRadius, borderRadius, borderPen)
             drawText(itemText, fittedTextX, fittedTextY, textPen)
             itemImage?.let { drawBitmap(it.bitmap(), bitmapX, bitmapY, bitmapPen) }
-
         }
     }
 
     fun setItemImage(image: Drawable?) {
         if (image == null) return
         itemImage = image
+        invalidate()
+    }
+
+    fun setItemColor(color: Int) {
+        if (itemImage == null) return
+        bitmapPen.colorFilter = PorterDuffColorFilter(context.color(color), PorterDuff.Mode.SRC_IN)
         invalidate()
     }
 

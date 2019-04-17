@@ -78,33 +78,39 @@ class MainScreenActivity : AppCompatActivity() {
             updateData(currentCode)
         }
         manikin.let {
+            val temp = weather_temp.text.toString().substring(0, weather_temp.text.length - 2).toFloat().toInt()
             it.setHeadAction {
                 Intent(this, WardrobeActivity::class.java).apply {
                     putExtra(WARDROBE_FILTER_EXTRA, ItemTypes.HEAD)
+                    putExtra(WARDROBE_TEMP_EXTRA, temp)
                     startActivity(this)
                 }
             }
             it.setOverbodyAction {
                 Intent(this, WardrobeActivity::class.java).apply {
                     putExtra(WARDROBE_FILTER_EXTRA, ItemTypes.OVERBODY)
+                    putExtra(WARDROBE_TEMP_EXTRA, temp)
                     startActivity(this)
                 }
             }
             it.setBodyAction {
                 Intent(this, WardrobeActivity::class.java).apply {
                     putExtra(WARDROBE_FILTER_EXTRA, ItemTypes.BODY)
+                    putExtra(WARDROBE_TEMP_EXTRA, temp)
                     startActivity(this)
                 }
             }
             it.setLegsAction {
                 Intent(this, WardrobeActivity::class.java).apply {
                     putExtra(WARDROBE_FILTER_EXTRA, ItemTypes.LEGS)
+                    putExtra(WARDROBE_TEMP_EXTRA, temp)
                     startActivity(this)
                 }
             }
             it.setFeetAction {
                 Intent(this, WardrobeActivity::class.java).apply {
                     putExtra(WARDROBE_FILTER_EXTRA, ItemTypes.FEET)
+                    putExtra(WARDROBE_TEMP_EXTRA, temp)
                     startActivity(this)
                 }
             }
@@ -148,10 +154,51 @@ class MainScreenActivity : AppCompatActivity() {
 
     @SuppressLint("CheckResult")
     private fun putOnManikin() {
+        val temp = weather_temp.text.toString().substring(0, weather_temp.text.length - 2).toFloat().toInt()
+        manikin.clearItems()
+        itemsRepository.loadAll().subscribe { items ->
+            items.asSequence()
+                .filter {
+                    it.type == ItemTypes.HEAD &&
+                            it.tempFrom <= temp &&
+                            it.tempTo >= temp
+                }.toCollection(manikin.headItems)
+
+            items.asSequence()
+                .filter {
+                    it.type == ItemTypes.OVERBODY &&
+                            it.tempFrom <= temp &&
+                            it.tempTo >= temp
+                }.toCollection(manikin.overbodyItems)
+
+            items.asSequence()
+                .filter {
+                    it.type == ItemTypes.BODY &&
+                            it.tempFrom <= temp &&
+                            it.tempTo >= temp
+                }.toCollection(manikin.bodyItems)
+
+            items.asSequence()
+                .filter {
+                    it.type == ItemTypes.LEGS &&
+                            it.tempFrom <= temp &&
+                            it.tempTo >= temp
+                }.toCollection(manikin.legsItems)
+
+            items.asSequence()
+                .filter {
+                    it.type == ItemTypes.FEET &&
+                            it.tempFrom <= temp &&
+                            it.tempTo >= temp
+                }.toCollection(manikin.feetItems)
+
+            manikin.dress()
+        }
     }
 
     companion object {
         const val WARDROBE_FILTER_EXTRA = "WARDROBE_FILTER_EXTRA"
+        const val WARDROBE_TEMP_EXTRA = "WARDROBE_TEMP_EXTRA"
         const val LOCATION_REQUEST = 0x001
         const val DEFAULT_LOCATION_CODE = "295212"
     }
