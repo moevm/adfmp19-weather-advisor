@@ -111,7 +111,6 @@ class ClotheItem @JvmOverloads constructor(
     }
 
     fun setItemImage(image: Drawable?) {
-        if (image == null) return
         itemImage = image
         invalidate()
     }
@@ -187,6 +186,11 @@ class ClotheItem @JvmOverloads constructor(
         }
         bitmapX = cellMiddleX - (bitmap?.let { it.width / 2 } ?: 0)
         bitmapY = cellMiddleY - (bitmap?.let { it.height / 2 } ?: 0)
+    }
+
+    fun hideTitle() {
+        textPen.color = Color.TRANSPARENT
+        invalidate()
     }
 
     enum class TextPosition {

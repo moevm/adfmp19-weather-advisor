@@ -25,7 +25,11 @@
     <string name="location">Location</string>
     <string name="default_city">Saint-Petersburg (RU)</string>
     <string name="editor_screen">New Clothe</string>
-
+    <string name="cant_create_item_toast">Fill all fields before create the item</string>
+    <string name="weather_wind">Wind</string>
+    <string name="weather_pressure">Pressure</string>
+    <string name="ms">m/s</string>
+    <string name="mm">mm</string>
     <string-array name="item_types">
         <item>All</item>
         <item>Head</item>

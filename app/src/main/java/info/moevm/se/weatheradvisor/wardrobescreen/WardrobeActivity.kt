@@ -34,7 +34,7 @@ class WardrobeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         (application as App).appComponent.inject(this)
         setContentView(R.layout.activity_wardrobe)
-        toolbar_title.text = "Wardrobe"
+        toolbar_title.text = getString(R.string.wardrobe_title)
         toolbar_nav_button.apply {
             setImageResource(R.drawable.vd_navigate_back)
             setOnClickListener {
@@ -72,6 +72,6 @@ class WardrobeActivity : AppCompatActivity() {
 
     fun updateItem(item: Item, checked: Boolean) {
         item.selected = checked
-        repository.update(item)
+        repository.save(item)
     }
 }

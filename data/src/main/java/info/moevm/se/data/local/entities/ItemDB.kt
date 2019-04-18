@@ -21,6 +21,7 @@ data class ItemDB(
 
 
 fun ItemDB.map() = Item(
+    id = this.id,
     name = this.name,
     type = TypeConverter.to(this.type),
     colors = ColorConverter.to(this.colors),
@@ -31,7 +32,7 @@ fun ItemDB.map() = Item(
 )
 
 fun Item.map() = ItemDB(
-    id = 0,
+    id = this.id,
     name = this.name,
     type = TypeConverter.from(this.type),
     colors = ColorConverter.from(this.colors),

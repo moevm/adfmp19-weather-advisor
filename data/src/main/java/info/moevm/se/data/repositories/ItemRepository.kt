@@ -35,7 +35,7 @@ class ItemRepository @Inject constructor(
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
 
-    fun loadById(id: String) = dao.itemById(id)
+    fun loadById(id: Int) = dao.itemById(id)
         .map { it.map() }
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())

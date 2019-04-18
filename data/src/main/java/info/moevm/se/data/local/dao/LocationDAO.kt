@@ -17,7 +17,7 @@ interface LocationDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(value: LocationDB)
 
-    @Update
+    @Update(onConflict = OnConflictStrategy.REPLACE)
     fun update(value: LocationDB)
 
     @Delete

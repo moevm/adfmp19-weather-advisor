@@ -83,12 +83,20 @@ class ItemAdapter(val activity: WardrobeActivity, itemsStream: Maybe<List<Item>>
         fun bind(position: Int) {
             view.findViewById<TextView>(R.id.wardrobe_item_title).text = items[position].name
             view.findViewById<ImageView>(R.id.wardrobe_item_edit).setOnClickListener {
-                activity.startActivity(Intent(activity, ClotheEditorActivity::class.java))
+                val intent = Intent(activity, ClotheEditorActivity::class.java).apply {
+                    putExtra(ITEM_ID_EXTRA, items[position].id)
+                }
+                activity.startActivity(intent)
+                activity.finish()
             }
             view.findViewById<CheckBox>(R.id.wardrobe_item_checkbox).let {
                 it.isChecked = items[position].selected
                 it.setOnCheckedChangeListener { _, isChecked -> updateItemCheckState(items[position], isChecked) }
             }
         }
+    }
+
+    companion object {
+        const val ITEM_ID_EXTRA = "ITEM_ID_EXTRA"
     }
 }

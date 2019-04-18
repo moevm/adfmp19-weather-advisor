@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -20,6 +21,7 @@ import info.moevm.se.weatheradvisor.ui.adapter.FilterType.FEET
 import info.moevm.se.weatheradvisor.ui.adapter.FilterType.HEAD
 import info.moevm.se.weatheradvisor.ui.adapter.FilterType.LEGS
 import info.moevm.se.weatheradvisor.ui.adapter.FilterType.OVERBODY
+import info.moevm.se.weatheradvisor.ui.adapter.ItemAdapter.Companion.ITEM_ID_EXTRA
 import info.moevm.se.weatheradvisor.ui.adapter.TypeAdapter
 import info.moevm.se.weatheradvisor.ui.util.ShiftedOutlineProvider
 import info.moevm.se.weatheradvisor.wardrobescreen.WardrobeActivity
@@ -39,6 +41,7 @@ class ClotheEditorActivity : AppCompatActivity() {
 
     private val colorAdapter: ColorAdapter by lazy { ColorAdapter(this) }
     private val typeAdapter: TypeAdapter by lazy { TypeAdapter() }
+    private var editedItem: Item? = null
 
     @Inject
     lateinit var repository: ItemRepository
@@ -106,20 +109,49 @@ class ClotheEditorActivity : AppCompatActivity() {
                 temp_from_edit.text.isNotBlank() &&
                 temp_before_edit.text.isNotBlank()
             ) {
-                repository.save(
-                    Item(
-                        create_clothe_text_edit.text.toString(),
-                        typeAdapter.getSelected(),
-                        colorAdapter.getSelected(),
-                        typeAdapter.getSrc(),
-                        temp_from_edit.text.toString().toInt(),
-                        temp_before_edit.text.toString().toInt()
+                if (editedItem != null) {
+                    repository.save(
+                        Item(
+                            editedItem?.id ?: 0,
+                            create_clothe_text_edit.text.toString(),
+                            typeAdapter.getSelected(),
+                            colorAdapter.getSelected(),
+                            typeAdapter.getSrc(),
+                            temp_from_edit.text.toString().toInt(),
+                            temp_before_edit.text.toString().toInt(),
+                            editedItem?.selected ?: true
+                        )
                     )
-                )
+                } else {
+                    repository.save(
+                        Item(
+                            0,
+                            create_clothe_text_edit.text.toString(),
+                            typeAdapter.getSelected(),
+                            colorAdapter.getSelected(),
+                            typeAdapter.getSrc(),
+                            temp_from_edit.text.toString().toInt(),
+                            temp_before_edit.text.toString().toInt()
+                        )
+                    )
+                }
                 startActivity(Intent(this, WardrobeActivity::class.java))
                 finish()
             } else {
-                Toast.makeText(this, "Fill all fields before create the item", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.cant_create_item_toast, Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        intent.let {
+            if (it.hasExtra(ITEM_ID_EXTRA)) {
+                repository.loadById(it.getIntExtra(ITEM_ID_EXTRA, 0)).subscribe { item ->
+                    editedItem = item
+                    editedItem?.let { edited ->
+                        create_clothe_text_edit.setText(edited.name, TextView.BufferType.EDITABLE)
+                        temp_from_edit.setText(edited.tempFrom.toString(), TextView.BufferType.EDITABLE)
+                        temp_before_edit.setText(edited.tempTo.toString(), TextView.BufferType.EDITABLE)
+                    }
+                }
             }
         }
     }

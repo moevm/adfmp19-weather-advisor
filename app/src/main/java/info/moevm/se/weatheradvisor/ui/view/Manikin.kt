@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import info.moevm.se.domain.entities.Item
 import info.moevm.se.domain.entities.ItemColors.COLOR1
@@ -101,12 +102,39 @@ class Manikin @JvmOverloads constructor(
             setHeadItem(headItems[currentHead])
             if (overbodyItems.isNotEmpty()) setOverbodyItem(overbodyItems[currentOverbody])
             if (bodyItems.isNotEmpty()) setBodyItem(bodyItems[currentBody])
-            if (overbodyItems.isEmpty()) overbody.setItemTitle(bodyItems[currentBody].name)
-            if (bodyItems.isEmpty()) body.setItemTitle(overbodyItems[currentOverbody].name)
+            if (overbodyItems.isEmpty()) {
+                overbody.setItemTitle(bodyItems[currentBody].name)
+                overbody.hideTitle()
+            }
+            if (bodyItems.isEmpty()) {
+                body.setItemTitle(overbodyItems[currentOverbody].name)
+                body.hideTitle()
+            }
             setLegsItem(legsItems[currentLegs])
             setFeetItem(feetItems[currentFeet])
             adjustCells()
         } else {
+            head.apply {
+                setItemTitle("")
+                setItemImage(null)
+            }
+            overbody.apply {
+                setItemTitle("")
+                setItemImage(null)
+            }
+            body.apply {
+                setItemTitle("")
+                setItemImage(null)
+            }
+            legs.apply {
+                setItemTitle("")
+                setItemImage(null)
+            }
+            feet.apply {
+                setItemTitle("")
+                setItemImage(null)
+            }
+            adjustCells()
             Toast.makeText(
                 context,
                 "Your wardrobe is too weak. Please add at least one item to each category",
@@ -115,7 +143,7 @@ class Manikin @JvmOverloads constructor(
         }
     }
 
-    fun nextOutfit() {
+    private fun nextOutfit() {
         when {
             currentHead < headItems.size-1 -> {
                 currentHead++
@@ -144,7 +172,7 @@ class Manikin @JvmOverloads constructor(
 
     }
 
-    fun prevOutfit() {
+    private fun prevOutfit() {
         when {
             currentFeet > 0 -> {
                 currentFeet--
@@ -178,6 +206,11 @@ class Manikin @JvmOverloads constructor(
         bodyItems.clear()
         legsItems.clear()
         feetItems.clear()
+        currentHead = 0
+        currentOverbody = 0
+        currentBody = 0
+        currentLegs = 0
+        currentFeet = 0
     }
 
     private fun setHeadItem(item: Item) = setSrcAndTitle(head, item)

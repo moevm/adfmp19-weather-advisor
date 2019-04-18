@@ -18,13 +18,13 @@ interface ItemDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(value: ItemDB)
 
-    @Update
+    @Update(onConflict = OnConflictStrategy.REPLACE)
     fun update(value: ItemDB)
 
     @Delete
     fun delete(value: ItemDB)
 
     @Query("SELECT * FROM item WHERE id = :id")
-    fun itemById(id: String): Maybe<ItemDB>
+    fun itemById(id: Int): Maybe<ItemDB>
 
 }

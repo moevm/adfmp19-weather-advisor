@@ -45,8 +45,8 @@ class MainScreenActivity : AppCompatActivity() {
             {
                 weather_date.text = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(it.date)
                 weather_temp.text = String.format("%s\u00B0C", it.temp)
-                weather_wind.text = String.format("Wind %s m/s", it.wind)
-                weather_wet.text = String.format("Pressure %s mm", it.wet)
+                weather_wind.text = String.format("%s %s %s", getString(R.string.weather_wind), it.wind, getString(R.string.ms))
+                weather_wet.text = String.format("%s %s %s", getString(R.string.weather_pressure), it.wet, getString(R.string.mm))
                 weather_state.text = it.name
                 putOnManikin()
                 swipe_to_refresh.isRefreshing = false
@@ -117,6 +117,10 @@ class MainScreenActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        putOnManikin()
+    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
@@ -161,35 +165,40 @@ class MainScreenActivity : AppCompatActivity() {
                 .filter {
                     it.type == ItemTypes.HEAD &&
                             it.tempFrom <= temp &&
-                            it.tempTo >= temp
+                            it.tempTo >= temp &&
+                            it.selected
                 }.toCollection(manikin.headItems)
 
             items.asSequence()
                 .filter {
                     it.type == ItemTypes.OVERBODY &&
                             it.tempFrom <= temp &&
-                            it.tempTo >= temp
+                            it.tempTo >= temp &&
+                            it.selected
                 }.toCollection(manikin.overbodyItems)
 
             items.asSequence()
                 .filter {
                     it.type == ItemTypes.BODY &&
                             it.tempFrom <= temp &&
-                            it.tempTo >= temp
+                            it.tempTo >= temp &&
+                            it.selected
                 }.toCollection(manikin.bodyItems)
 
             items.asSequence()
                 .filter {
                     it.type == ItemTypes.LEGS &&
                             it.tempFrom <= temp &&
-                            it.tempTo >= temp
+                            it.tempTo >= temp &&
+                            it.selected
                 }.toCollection(manikin.legsItems)
 
             items.asSequence()
                 .filter {
                     it.type == ItemTypes.FEET &&
                             it.tempFrom <= temp &&
-                            it.tempTo >= temp
+                            it.tempTo >= temp &&
+                            it.selected
                 }.toCollection(manikin.feetItems)
 
             manikin.dress()
